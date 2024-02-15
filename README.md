@@ -17,7 +17,7 @@ rather than the answers.** So, we are open to all your ideas except the over-eng
 You can create a new branch from the main branch. Then, you can make one commit for each part to review your work
 easily.
 After you finalize your assignment, you should push the commits to your feature, open a PR, then add GitHub user
-names `aclet-armis` and `ktoprakucar` as reviewers. When you are done with all, you can ping us in case of any delay! :)
+names `aclet-armis` and `yamen225` as reviewers. When you are done with all, you can ping us in case of any delay! :)
 
 If you have any questions about anything, please do not hesitate to contact us!
 
@@ -44,14 +44,16 @@ Before the explanation, there are test classes for each part except the last one
 
 ### 2. DataframeProcessService
 
+- In the `DataframeProcessService` class, you see in the method `add_new_columns_to_dataframe` that 'lenght_of_text' is not
+having correct value please correct it. 
 - If you run the test in the `DataframeProcessServiceTest` class, you see it works a bit slowly. How can you improve it?
 - After you fix it, can you please add another test with a sample dataframe that contains only _10_ text with better
   validations?
 
 ### 3. CustomerService:
 
-There is a basic webservice to register customers. It registers the customer by **name**, **surname**, **age**, and *
-*mail address** and return **the number of customers** from `in_memory`
+There is a basic webservice to register customers. It registers the customer by **name**, **surname**, **age**, and 
+**mail address** and return **the number of customers** from `in_memory`
 database.
 
 - In the method `register_customer` at the `src.application.customer_api.CustomerAPI` class, what is improper for you?
