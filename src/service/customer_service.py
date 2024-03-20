@@ -19,7 +19,7 @@ class CustomerService:
         if age < 12:
             raise Exception()
         name = name.lower()
-        surname = name.lower()
+        surname = surname.lower()
         mail_domain = mail_address.split('@')[1]
         c = pd.DataFrame({'name': [name],
                           'surname': [surname],
