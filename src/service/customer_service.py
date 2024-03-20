@@ -1,30 +1,30 @@
+from typing import Protocol
 import pandas as pd
+from pydantic import BaseModel, validator
 
-from src.service.customer_repository_service import CustomerRepositoryService
+from src.contracts.customer_contract import CustomerRequest, CustomerResponse
+
+
+class CustomerRepositoryProtocol(Protocol):
+    def register_customer(self, customer: CustomerRequest):
+        ...
+
+    def fetch_number_of_customers(self) -> int:
+        ...
+
+    def get_customers(self) -> list[CustomerResponse]:
+        ...
 
 
 class CustomerService:
+    def __init__(self, customer_repository_service: CustomerRepositoryProtocol):
+        self.__customer_repository_service = customer_repository_service
 
-    def register_customer(self, name: str, surname: str, age: int, mail_address: str) -> int:
-        if name is None:
-            raise Exception()
-        if len(name) == 0:
-            raise Exception()
-        if surname is None:
-            raise Exception()
-        if len(surname) == 0:
-            raise Exception()
-        if age is None:
-            raise Exception()
-        if age < 12:
-            raise Exception()
-        name = name.lower()
-        surname = name.lower()
-        mail_domain = mail_address.split('@')[1]
-        c = pd.DataFrame({'name': [name],
-                          'surname': [surname],
-                          'age': [age],
-                          'mail_domain': [mail_domain]})
-        s = CustomerRepositoryService()
-        s.register_customer(c)
-        return s.fetch_number_of_customers()
+    def register_customer(self, customer: CustomerRequest) -> None:
+        self.__customer_repository_service.register_customer(customer=customer)
+
+    def fetch_number_of_customers(self) -> int:
+        return self.__customer_repository_service.fetch_number_of_customers()
+
+    def get_customers(self) -> list[CustomerResponse]:
+        return self.__customer_repository_service.get_customers()
